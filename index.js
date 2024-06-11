@@ -26,6 +26,12 @@ let persons = [
 
 app.use(express.json());
 
+app.get("/info", (req, res) => {
+  let message = `<p>Phonebook has info for ${persons.length} people</p>`;
+  message += `<p>${new Date(Date.now()).toString()} </p>`;
+  res.send(message);
+});
+
 app.get("/api/persons", (req, res) => {
   res.json(persons);
 });
