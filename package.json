@@ -1,0 +1,19 @@
+{
+  "name": "phonebook-backend",
+  "version": "0.0.1",
+  "description": "In this repository, I repeat the homework from part 3 of FSO course. It is a backend for phonebook project.\r This is the 1st repeat practice for phonebook backend.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jing",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
