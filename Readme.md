@@ -1,0 +1,2 @@
+In this repository, I repeat the homework from part 3 of FSO course. It is a backend for phonebook project.
+This is the 1st repeat practice for phonebook backend.
