@@ -24,6 +24,10 @@ let persons = [
   },
 ];
 
+const generateId = () => {
+  return Math.floor(Math.random() * 5646464657813213);
+};
+
 app.use(express.json());
 
 app.get("/info", (req, res) => {
@@ -34,6 +38,25 @@ app.get("/info", (req, res) => {
 
 app.get("/api/persons", (req, res) => {
   res.json(persons);
+});
+
+app.post("/api/persons", (req, res) => {
+  const body = req.body;
+
+  if (!body.name) {
+    return res.status(400).json({
+      error: "name missing",
+    });
+  }
+
+  const person = {
+    name: body.name,
+    number: body.number,
+    id: generateId(),
+  };
+
+  persons = persons.concat(person);
+  res.json(person);
 });
 
 app.get("/api/persons/:id", (req, res) => {
