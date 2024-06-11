@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "name": "Ann Kuu",
-    "number": 11111111
+    "number": "1111111"
 }
 
 ###
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
     "name": " ",
-    "number": 56450
+    "number": "2222222222"
 }
 
 ###
@@ -24,5 +24,33 @@ Content-Type: application/json
 
 {
     "name": "",
-    "number": 56450
+    "number": "56450"
+}
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Lucy Kuu",
+    "number": " "
+}
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Lucy Kuu",
+    "number": ""
+}
+
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Arto Hellas",
+    "number": "58585856894"
 }
