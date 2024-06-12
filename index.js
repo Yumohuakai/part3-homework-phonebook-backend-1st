@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 
 let persons = [
@@ -29,6 +30,7 @@ const generateId = () => {
 };
 
 app.use(express.json());
+app.use(morgan("tiny"));
 
 app.get("/info", (req, res) => {
   let message = `<p>Phonebook has info for ${persons.length} people</p>`;
