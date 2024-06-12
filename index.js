@@ -2,6 +2,12 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 
+const showPostBody = (req, res) => {
+  return JSON.stringify(req.body);
+};
+
+morgan.token("post-body", showPostBody);
+
 let persons = [
   {
     id: 1,
@@ -30,7 +36,12 @@ const generateId = () => {
 };
 
 app.use(express.json());
-app.use(morgan("tiny"));
+// app.use(morgan("tiny"));
+app.use(
+  morgan(
+    ":method :url :status :res[content-length] - :response-time ms :post-body"
+  )
+);
 
 app.get("/info", (req, res) => {
   let message = `<p>Phonebook has info for ${persons.length} people</p>`;
