@@ -89,7 +89,7 @@ app.post("/api/persons", (req, res) => {
 });
 
 app.get("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   const person = persons.find((p) => p.id === id);
 
   if (person) {
@@ -100,7 +100,7 @@ app.get("/api/persons/:id", (req, res) => {
 });
 
 app.delete("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   persons = persons.filter((person) => person.id !== id);
 
   res.status(204).end();
