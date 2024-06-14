@@ -33,7 +33,7 @@ let persons = [
 ];
 
 const generateId = () => {
-  return Math.floor(Math.random() * 5646464657813213).toString();
+  return Math.floor(Math.random() * 5646464657813213);
 };
 
 app.use(express.json());
