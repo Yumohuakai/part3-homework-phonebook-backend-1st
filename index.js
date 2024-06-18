@@ -35,9 +35,9 @@ morgan.token("post-body", showPostBody);
 //   },
 // ];
 
-const generateId = () => {
-  return Math.floor(Math.random() * 5646464657813213);
-};
+// const generateId = () => {
+//   return Math.floor(Math.random() * 5646464657813213);
+// };
 
 app.use(express.json());
 app.use(cors());
@@ -78,22 +78,22 @@ app.post("/api/persons", (req, res) => {
     });
   }
 
-  const isExisted = persons.find((person) => person.name === body.name);
+  // const isExisted = persons.find((person) => person.name === body.name);
 
-  if (isExisted) {
-    return res.status(400).json({
-      error: "name must be unique",
-    });
-  }
+  // if (isExisted) {
+  //   return res.status(400).json({
+  //     error: "name must be unique",
+  //   });
+  // }
 
-  const person = {
+  const person = new Person({
     name: body.name,
     number: body.number,
-    id: generateId(),
-  };
+  });
 
-  persons = persons.concat(person);
-  res.json(person);
+  person.save().then((savedPerson) => {
+    res.json(savedPerson);
+  });
 });
 
 app.get("/api/persons/:id", (req, res) => {
