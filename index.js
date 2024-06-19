@@ -39,9 +39,9 @@ morgan.token("post-body", showPostBody);
 //   return Math.floor(Math.random() * 5646464657813213);
 // };
 
+app.use(express.static("dist"));
 app.use(express.json());
 app.use(cors());
-app.use(express.static("dist"));
 // app.use(morgan("tiny"));
 app.use(
   morgan(
@@ -107,13 +107,24 @@ app.get("/api/persons/:id", (req, res) => {
   }
 });
 
-app.delete("/api/persons/:id", (req, res) => {
+app.delete("/api/persons/:id", (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
     .then((result) => {
       res.status(204).end();
     })
-    .catch((error) => res.status(400).send({ error: "malformatted id" }));
+    .catch((error) => next(error));
 });
+
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  }
+
+  next(error);
+};
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 
