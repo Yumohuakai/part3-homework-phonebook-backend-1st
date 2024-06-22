@@ -6,7 +6,7 @@ const Person = require("./models/person");
 
 const app = express();
 
-const showPostBody = (req, res) => {
+const showPostBody = (req) => {
   return JSON.stringify(req.body);
 };
 
@@ -113,7 +113,7 @@ app.get("/api/persons/:id", (req, res, next) => {
 
 app.delete("/api/persons/:id", (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
-    .then((result) => {
+    .then(() => {
       res.status(204).end();
     })
     .catch((error) => next(error));
